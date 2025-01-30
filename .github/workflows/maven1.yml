@@ -17,7 +17,11 @@ jobs:
        distribution: 'microsoft'
     - run: mvn --batch-mode --update-snapshots verify
     - run: mkdir staging &&  cp target/*.jar staging 
-      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.0 
+      with:
+       name: Package_Java
+       path: staging
 
        
     

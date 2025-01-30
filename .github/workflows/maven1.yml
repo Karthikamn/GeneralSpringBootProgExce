@@ -1,0 +1,23 @@
+name: Setup Java and maven 
+
+on:
+ push:
+ workflow_dispatch:
+
+jobs:
+ echo-maven-setup:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4.7.0
+      with:
+       java-version: '17'
+       distribution: 'microsoft'
+    - run: mvn --batch-mode --update-snapshots verify
+    - run: mkdir staging &&  cp target/*.jar staging 
+      
+
+       
+    

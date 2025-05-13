@@ -24,12 +24,8 @@ steps:
      mavenPomFile: 'pom.xml'
      testResultsFiles: '**surefire-reports/TEST-*.xml'
      javaHomeOption: JDKVersion
-     jdkVersionOption: '1.11'
      mavenVersionOption: Default
-     mavenOptions: '-Xmx3072m'
-     jdkArchitectureOption: x64
-     goals: 'package'
-     publishJUnitResults: true
+     
      
   
 - task: CopyFiles@2

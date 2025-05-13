@@ -13,17 +13,15 @@ pool:
   
  
 steps:
-- task: JavaToolInstaller@0
-  inputs:
-      versionSpec: "11"
-      jdkArchitectureOption: x64
-      jdkSourceOption: LocalDirectory
-      jdkFile: "/builds/openjdk-11.0.2_linux-x64_bin.tar.gz"
+
       
 - task: Maven@4
   inputs:
      mavenPomFile: 'pom.xml'
-     goals: 'clean package'
+     mavenOptions: '-Xmx3072m'
+     javaHomeOption: JDKVersion
+     jdkArchitectureOption: x64
+     goals: 'package'
      jdkVersionOption: '1.11'
      mavenVersionOption: Default
      publishJUnitResults: true

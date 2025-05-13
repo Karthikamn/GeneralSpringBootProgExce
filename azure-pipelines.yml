@@ -7,14 +7,9 @@ trigger:
 - development
 
 pool:
-  vmImage: ubuntu-latest
+  name: 'AgentForAgile'
  
-schedules:
-- cron: '* * * * *'
-  displayName: Every minute
-  branches:
-    include:
-    - development
+
 
 steps:
 

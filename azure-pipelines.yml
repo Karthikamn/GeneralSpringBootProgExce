@@ -38,4 +38,14 @@ steps:
      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
      ArtifactName: 'drop'
      publishLocation: 'Container'
+- task: UniversalPackages@0
+  displayName: 'Publish .jar to Azure Artifacts (Universal Package)'
+  inputs:
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUse: 'internal'
+    vstsFeed: 'maven'
+    
+    
+
 

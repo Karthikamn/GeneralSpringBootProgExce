@@ -9,7 +9,7 @@ trigger:
 pool:
   name: 'AgentForAgile'
   demands:
-   - mvn
+   - maven
  
 steps:
  - task: Maven@4

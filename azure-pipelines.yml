@@ -33,13 +33,7 @@ steps:
      Contents: '**/target/*.jar'
      TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: MavenAuthenticate@0
-  displayName: 'Authenticate to Azure Artifacts feed'
-  inputs:
-    artifactsFeeds: 'Maven'        ## Select one or multiple feeds to authenticate with.
-- script: |
-   mvn deploy
-  displayName: 'Publish'
+
 
 
     

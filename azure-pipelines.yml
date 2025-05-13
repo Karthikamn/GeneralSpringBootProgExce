@@ -44,7 +44,7 @@ steps:
     command: 'publish'
     publishDirectory: '$(Build.ArtifactStagingDirectory)'
     feedsToUse: 'internal'
-    vstsFeed: 'maven'
+    vstsFeed: 'Maven'
     
     
 

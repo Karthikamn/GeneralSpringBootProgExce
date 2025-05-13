@@ -8,6 +8,8 @@ trigger:
 
 pool:
   name: 'AgentForAgile'
+  demands: 
+   - mvn
   
  
 steps:

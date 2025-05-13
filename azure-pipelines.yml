@@ -18,7 +18,7 @@ steps:
     versionSpec: '11'
     jdkArchitectureOption:  'x64' 
     jdkSourceOption: 'LocalDirectory'
-    jdkFile: '/usr/bin/java'
+    jdkFile: '/usr/share/man/man1/java.1.gz'
 
  - task: Maven@4
    inputs:

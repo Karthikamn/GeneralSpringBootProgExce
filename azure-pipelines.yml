@@ -9,27 +9,24 @@ trigger:
 pool:
   name: 'AgentForAgile'
  
-
-
 steps:
+ - task: Maven@4
+   inputs:
+     mavenPomFile: 'pom.xml'
+     goals: 'clean package'
+     jdkVersionOption: '1.11'
+     mavenVersionOption: Default
+     publishJUnitResults: true
+     testResultsFiles: '**surefire-reports/TEST-*.xml'
+  
+ - task: CopyFiles@2
+   inputs:
+     Contents: '**/target/*.jar'
+     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-- task: CopyFiles@2
-  inputs:
-    Contents: '**'
-    TargetFolder: '$(Build.artifactstagingdirectory)'
-    
-    
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)' # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
-    ArtifactName: 'drop' # string. Required. Artifact name. Default: drop.
-    publishLocation: 'Container'
- 
+ - task: PublishBuildArtifacts@1
+   inputs:
+     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+     ArtifactName: 'drop'
+     publishLocation: 'Container'
 
-    

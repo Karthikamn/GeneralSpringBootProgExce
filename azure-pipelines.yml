@@ -17,7 +17,7 @@ steps:
    inputs:
     versionSpec: '11'
     jdkArchitectureOption:  'x64'
-    jdkSourceOption: "PreInstalled"
+    jdkSourceOption: LocalDirectory  
 
  - task: Maven@4
    inputs:

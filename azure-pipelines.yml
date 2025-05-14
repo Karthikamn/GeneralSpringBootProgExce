@@ -33,6 +33,12 @@ steps:
      Contents: '**/target/*.jar'
      TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    publishLocation: 'pipeline'
+    artifact: 'drop'
+
 
 
 

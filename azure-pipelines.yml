@@ -23,7 +23,7 @@ steps:
   - task: CopyFiles@2
     inputs:
        Contents: '**/target/*.jar'
-       TargetFolder:  $(build.artifactstagingdirectory)
+       TargetFolder:  '$(Build.ArtifactStagingDirectory)'
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(Pipeline.Workspace)' 

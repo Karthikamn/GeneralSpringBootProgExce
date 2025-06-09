@@ -16,16 +16,28 @@ steps:
 
   - task: Maven@4
     inputs:
-      mavenPOMFile: 'pom.xml'
+      mavenPomFile: 'pom.xml'
       testResultsFiles: '**surefire-reports/TEST-*.xml'
-      javaHomeOption: 'JDKVersion' 
-      mavenVersionOption: 'Default'
+      javaHomeOption: JDKVersion
+      mavenVersionOption: Default
+     
+     
+  
   - task: CopyFiles@2
     inputs:
-       Contents: '**/target/*.jar'
-       TargetFolder:  '$(Build.ArtifactStagingDirectory)'
+      Contents: '**/target/*.jar'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(Pipeline.Workspace)' 
+      targetPath: '$(Pipeline.Workspace)'
       publishLocation: 'pipeline'
       artifact: 'drop'
+
+
+
+
+    
+    
+
+

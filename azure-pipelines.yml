@@ -8,8 +8,7 @@ trigger:
 
 pool:
   name: 'Agent1'
-  demands: 
-   - mvn
+  
   
  
 steps:

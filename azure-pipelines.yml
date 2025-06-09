@@ -17,7 +17,7 @@ steps:
   - task: Maven@4
     inputs:
       mavenPOMFile: 'pom.xml'
-      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      testResultsFiles: '**surefire-reports/TEST-*.xml'
       javaHomeOption: 'JDKVersion' 
       mavenVersionOption: 'Default'
   - task: CopyFiles@2

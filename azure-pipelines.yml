@@ -7,42 +7,25 @@ trigger:
 - development
 
 pool:
-  name: 'AgentForAgile'
+  name: 'Agent1'
   demands: 
    - mvn
   
  
 steps:
 
-    
-
-
-
-
-- task: Maven@4
-  inputs:
-     mavenPomFile: 'pom.xml'
-     testResultsFiles: '**surefire-reports/TEST-*.xml'
-     javaHomeOption: JDKVersion
-     mavenVersionOption: Default
-     
-     
-  
-- task: CopyFiles@2
-  inputs:
-     Contents: '**/target/*.jar'
-     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    publishLocation: 'pipeline'
-    artifact: 'drop'
-
-
-
-
-    
-    
-
-
+  - task: Maven@4
+    inputs:
+      mavenPOMFile: 'pom.xml'
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion' 
+      mavenVersionOption: 'Default'
+  - task: CopyFiles@2
+    inputs:
+       Contents: '**/target/*.jar'
+       TargetFolder:  $(build.artifactstagingdirectory)
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Pipeline.Workspace)' 
+      publishLocation: 'pipeline'
+      artifact: 'drop'

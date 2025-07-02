@@ -13,7 +13,7 @@ jobs:
      uses: actions/setup-java@v3.14.1
      with:
         java-version: '17'
-        distribution: 'oracle'
+        distribution: 'microsoft'
    - run:  mvn --batch-mode --update-snapshots verify
    - run: mkdir staging && cp   target/*.jar staging
    - name: Upload a Build Artifact

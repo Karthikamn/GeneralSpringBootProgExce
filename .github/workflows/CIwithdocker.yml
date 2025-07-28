@@ -1,0 +1,26 @@
+name: CI for Maven with Docker
+
+env:
+ DOCKER_IMAGE: karthikamn/general_spring_boot_app
+
+on: workflow_dispatch
+
+jobs:
+ build:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout
+    uses: actions/checkout@v4.2.2 
+  - name: login to Docker hub
+    uses: docker/login-action@v3.4.0
+    with:
+     username: ${{vars.DOCKER_NAME}}
+     password: ${{secrets.DOCKER_PASSWORD}}
+  - name: Build the Docker image
+    run:  |
+     docker build -t $DOCKER_IMAGE:${{github.sha}} .
+     docker tag $DOCKER_IMAGE:${{github.sha}} $DOCKER_IMAGE:latest
+  - name: Push the docker image to Hub
+    run: |
+      docker push $DOCKER_IMAGE:${{github.sha}}
+      docker push $DOCKER_IMAGE:latest

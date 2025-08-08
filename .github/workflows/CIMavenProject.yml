@@ -27,7 +27,7 @@ jobs:
       with:
        name: Package
        path: staging
-       
+    - run: echo 'vars is ${{vars.variable}}'   
       
        
       

@@ -1,0 +1,27 @@
+name: CI Maven Project
+
+on: workflow_dispatch
+
+jobs:
+ CI_Non-conterization_build:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4.2.0
+    - name: Setup Java JDK  
+      uses: actions/setup-java@v3.14.1
+      with:
+       java-version: 17
+       distribution: microsoft
+    - name: Build using Maven
+      run: mvn --batch-mode --update-snapshots verify
+    - run: mkdir staging && cp target/*.jar staging 
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.6.2
+      with:
+       name: Package
+       path: staging
+       
+      
+       
+      

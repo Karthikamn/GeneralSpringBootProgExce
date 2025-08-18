@@ -14,6 +14,15 @@ pool:
  
 steps:
 
+  - task: SonarQubePrepare@7
+    inputs:
+     SonarQube: 'Sonar1'
+     scannerMode: 'other'
+     extraProperties: 
+      sonar.projectName=MavenProjectADO
+      sonar.projectKey=MavenProjectADO
+
+
   - task: Maven@4
     inputs:
       mavenPomFile: 'pom.xml'

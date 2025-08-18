@@ -19,8 +19,8 @@ steps:
      SonarQube: 'Sonar1'
      scannerMode: 'other'
      extraProperties: 
-      sonar.projectName=MavenProjectADO
-      sonar.projectKey=MavenProjectADO
+      sonar.projectName=MavenProjectADO1
+      sonar.projectKey=MavenProjectADO1
 
 
   - task: Maven@4

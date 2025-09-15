@@ -14,8 +14,6 @@ jobs:
     with:  
      java-version: '17'
      distribution: 'microsoft' 
-  
-  - name: Build using Maven
   - run: mvn --batch-mode --update-snapshots verify
   - run: mkdir staging && cp target/*.jar staging
   - name: Publish the artifact

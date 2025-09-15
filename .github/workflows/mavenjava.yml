@@ -31,4 +31,7 @@ jobs:
       name: Package
       path: staging
    - name: check download artifact completed
-     run: ls
+     run: |
+        ls
+        cd staging
+        ls

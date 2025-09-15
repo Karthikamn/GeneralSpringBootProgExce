@@ -14,8 +14,7 @@ jobs:
     with:  
      java-version: '17'
      distribution: 'microsoft' 
-  - name: Echo Java
-    run: java -version
+  
   - name: Build using Maven
   - run: mvn --batch-mode --update-snapshots verify
   - run: mkdir staging && cp target/*.jar staging

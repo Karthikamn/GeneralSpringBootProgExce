@@ -4,7 +4,7 @@ trigger:
 - development
 
 pool:
-  vmImage: ubuntu-latest
+  name: 'Agent1'
 
 steps:
 - script: echo Hello, world!

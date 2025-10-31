@@ -7,7 +7,7 @@ trigger:
 - development
 
 pool:
-  name: 'Agent1'
+  name: 'Agent2'
 
 steps:
 - script: echo Hello, world!

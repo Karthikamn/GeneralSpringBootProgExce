@@ -41,6 +41,7 @@ stages:
     pool:
      name: Hackathon2
      demands: mvn
+    environment: dev
     strategy:
       runOnce:
         deploy:
@@ -55,6 +56,7 @@ stages:
     pool:
      name: Hackathon2
      demands: mvn
+    environment: Test
     strategy:
       runOnce:
         deploy:
@@ -69,6 +71,7 @@ stages:
     pool:
      name: Hackathon2
      demands: mvn
+    environment: staging
     strategy:
       runOnce:
         deploy:

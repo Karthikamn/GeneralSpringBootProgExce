@@ -6,23 +6,72 @@
 trigger:
 - development
 
-pool:
-  name: Hackathon2
-  demands: mvn
 
-steps:
- - task: Maven@4
-   inputs:
-     mavenPOMFile: 'pom.xml'
-     testResultsFiles: '**/surefire-reports/TEST-*.xml' 
-     javaHomeOption: JDKVersion
-     mavenVersionOption: 'Default' 
- - task: CopyFiles@2
-   inputs:
-     Contents: '**/ target/*.jar'
-     TargetFolder: '$(Build.ArtifactStagingDirectory)'
- - task: PublishPipelineArtifact@1
-   inputs:
-     targetPath: '$(Pipeline.Workspace)'
-     publishLocation: 'pipeline'
-     artifact: 'drop' 
+
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
+    pool:
+     name: Hackathon2
+     demands: mvn
+    steps:
+    - task: Maven@4
+      inputs:
+        mavenPOMFile: 'pom.xml'
+        testResultsFiles: '**/surefire-reports/TEST-*.xml' 
+        javaHomeOption: JDKVersion
+        mavenVersionOption: 'Default' 
+    - task: CopyFiles@2
+      inputs:
+       Contents: '**/ target/*.jar'
+       TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishPipelineArtifact@1
+      inputs:
+       targetPath: '$(Pipeline.Workspace)'
+       publishLocation: 'pipeline'
+       artifact: 'drop' 
+- stage: 'Dev'
+  displayName: 'Deploy to the dev environment'
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    pool:
+     name: Hackathon2
+     demands: mvn
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+           - download: current
+             artifact: drop
+- stage: 'Test'
+  displayName: 'Deploy to the test environment'
+  dependsOn: Dev
+  jobs:
+  - deployment: Deploy
+    pool:
+     name: Hackathon2
+     demands: mvn
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+           - download: current
+             artifact: drop
+- stage: 'Staging'
+  displayName: 'Deploy to the staging environment'
+  dependsOn: Test
+  jobs:
+  - deployment: Deploy
+    pool:
+     name: Hackathon2
+     demands: mvn
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+           - download: current
+             artifact: drop

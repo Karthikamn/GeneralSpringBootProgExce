@@ -15,6 +15,13 @@ jobs:
          java-version: '17'
          distribution: microsoft
       - name: Build with Maven
-        run: mvn -B clean install --no-transfer-progress 
-
- 
+        run: |
+         mvn -B clean install --no-transfer-progress 
+         mkdir staging && cp target/*.jar staging
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v5.0.0
+        with:
+         name: Package
+         path: staging
+         
+         

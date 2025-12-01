@@ -1,0 +1,24 @@
+name: First Workflow - Training1Dec2025
+
+on: 
+ push
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Print
+      run: echo "Build"
+
+  test:
+   runs-on: windows-latest
+   steps:
+    - name: Print
+      run: echo "test"
+
+
+  deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Print
+       run: echo "deploy"

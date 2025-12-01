@@ -4,21 +4,11 @@ on:
  push
 
 jobs:
-  build:
+  ci-build:
    runs-on: ubuntu-latest
    steps:
-    - name: Print
-      run: echo "Build"
+      - name: Checkout
+        uses: actions/checkout@v6.0.0
+        
 
-  test:
-   runs-on: windows-latest
-   steps:
-    - name: Print
-      run: echo "test"
-
-
-  deploy:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Print
-       run: echo "deploy"
+ 

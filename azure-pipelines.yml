@@ -7,17 +7,14 @@ trigger:
 - development
 
 pool:
-  name: MyAgentPool
+  name: AgentPool1
   demands:
    -  mvn
   
  
 steps:
 
-  - task: SonarQubePrepare@7
-    inputs:
-     SonarQube: 'Sonar1'
-     scannerMode: 'other'
+
      
 
 

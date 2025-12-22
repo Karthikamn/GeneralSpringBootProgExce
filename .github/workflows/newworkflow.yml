@@ -11,7 +11,7 @@ jobs:
    - name: Setup Java JDK
      uses: actions/setup-java@v5.1.0
      with:
-      java-version-file:  17
+      java-version:  17
       distribution: microsoft
       
 

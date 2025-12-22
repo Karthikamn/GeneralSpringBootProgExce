@@ -13,7 +13,18 @@ jobs:
      with:
       java-version:  17
       distribution: microsoft
-      
+   - name: Maven build
+     run: mvn build
+   - name: copy the target
+     run: mkdir staging && cp target/*.jar staging
+   - name: Upload a Build Artifact
+     uses: actions/upload-artifact@v6.0.0
+     with:
+       name: drop
+       path: staging
+        
+       
+     
 
     
   

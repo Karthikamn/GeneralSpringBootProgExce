@@ -14,7 +14,7 @@ jobs:
       java-version:  17
       distribution: microsoft
    - name: Maven build
-     run: mvn build
+     run: mvn --batch-mode --update-snapshots verify
    - name: copy the target
      run: mkdir staging && cp target/*.jar staging
    - name: Upload a Build Artifact

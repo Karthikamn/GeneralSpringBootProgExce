@@ -1,0 +1,30 @@
+name: CI Build
+
+on:
+ workflow_dispatch
+
+jobs:
+ CI_build:
+  runs-on:  ubuntu-latest
+  steps:
+  - name: Checkout
+    uses: actions/checkout@v6.0.2
+    # GITHUB_WORKSPACE ( default env var  )
+  - name: Setup Java JDK
+    uses: actions/setup-java@v5.2.0
+    with:
+      java-version: 17
+      distribution: microsoft
+  - name: Build with Maven
+    run: |
+     mvn clean install -DskipTests
+     mkdir staging && cp target/*.jar staging
+  - name: Upload a Build Artifact  
+    uses: actions/upload-artifact@v6.0.0
+    with:
+     name: Package
+     path: staging
+    
+      
+      
+

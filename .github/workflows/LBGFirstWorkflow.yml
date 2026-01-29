@@ -1,0 +1,22 @@
+name: LBG First Workflow
+
+on: 
+ workflow_dispatch: 
+
+
+jobs:
+ ci-build:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Code Checkout
+      uses: actions/checkout@v6.0.2
+    - name: SetUp Java
+      uses: actions/setup-java@v5.2.0
+      with:
+       java-version: 17
+       distribution: microsoft
+       
+      
+      
+      
+  

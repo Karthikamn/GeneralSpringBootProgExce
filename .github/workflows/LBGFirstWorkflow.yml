@@ -24,7 +24,11 @@ jobs:
       with:
        name: Packaging
        path: staging
-       
+ test:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Print
+      run:  echo 'test'
        
       
       

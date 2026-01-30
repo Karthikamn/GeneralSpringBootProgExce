@@ -25,6 +25,7 @@ jobs:
        name: Packaging
        path: staging
  test:
+  needs: ci-build
   runs-on: ubuntu-latest
   steps:
     - name: Print

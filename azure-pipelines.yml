@@ -4,19 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- development
+ branches:
+    include:
+      - development
 
 pool:
-  name: AgentPool1
+  name: AzureDevOpsING
   demands:
    -  mvn
   
  
 steps:
-
-
-     
-
 
   - task: Maven@4
     inputs:

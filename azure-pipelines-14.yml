@@ -4,6 +4,9 @@ trigger:
 stages:
   - stage: Build
     displayName: 'Build the web appln'
+    jobs:
+      - job: 'Build'
+        displayName: 'Build- job' 
     pool:
      name: AzureDevOpsING
      demands:

@@ -1,17 +1,22 @@
 trigger:
- - development
+- '*'
+
+
 
 stages:
-  - stage: Build
-    displayName: 'Build the web appln'
-    jobs:
-      - job: 'Build'
-        displayName: 'Build- job' 
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
     pool:
-     name: AzureDevOpsING
-     demands:
+      name: AzureDevOpsING
+      demands:
       - mvn
-     steps:
+
+    
+
+    steps:
     
      - task: Maven@4
        inputs:
@@ -30,11 +35,10 @@ stages:
          targetPath: '$(Pipeline.Workspace)'
          publishLocation: 'pipeline'
          artifact: 'drop'
-
-  - stage: 'Dev'
-    displayName: 'Deplot to dev environment'
-    dependsOn: Build
-    jobs:
+- stage: 'Dev'
+  displayName: 'Deplot to dev environment'
+  dependsOn: Build
+  jobs:
       - deployment: Deploy
         pool:
          name: AzureDevOpsING
@@ -46,10 +50,10 @@ stages:
              - download: current
                artifact: drop
 
-  - stage: Test
-    displayName: 'Deploy to test env'
-    dependsOn: Dev
-    jobs:
+- stage: Test
+  displayName: 'Deploy to test env'
+  dependsOn: Dev
+  jobs:
       - deployment: Deploy
         pool:
            name: AzureDevOpsING
@@ -61,10 +65,10 @@ stages:
              - download: current
                artifact: drop
 
-  - stage: Staging
-    displayName:  'Deploy to staging'
-    dependsOn: Test
-    jobs:
+- stage: Staging
+  displayName:  'Deploy to staging'
+  dependsOn: Test
+  jobs:
       - deployment:  Deploy
         pool:
          name: AzureDevOpsING

@@ -1,0 +1,23 @@
+name: CI batch
+on: workflow_dispatch
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+     - name: code checkout
+       uses: actions/checkout@v6.0.3
+     - name: Setup Java
+       uses: actions/setup-java@v5.2.0
+       with:
+         java-version: 21
+         distribution: microsoft
+     - name: setup maven build
+       run: |
+        mvn --batc-mode --update-snapshots verify
+        mkdir staging && cp target/*.jar staging
+     - name:  Upload
+       uses: actions/upload-artifact@v7.0.1
+       with:
+         name: Package
+         path: staging
+     

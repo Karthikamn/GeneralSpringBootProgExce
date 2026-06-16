@@ -13,7 +13,7 @@ jobs:
          distribution: microsoft
      - name: setup maven build
        run: |
-        mvn --batc-mode --update-snapshots verify
+        mvn --batch-mode --update-snapshots verify
         mkdir staging && cp target/*.jar staging
      - name:  Upload
        uses: actions/upload-artifact@v7.0.1

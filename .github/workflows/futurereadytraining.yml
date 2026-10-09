@@ -1,0 +1,28 @@
+name: First Workflow - Future Ready Training
+
+on: push
+
+jobs:
+   build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@v2.8.0
+       - name: Setup Java JDK
+         uses: actions/setup-java@v6.0.1
+         with:
+          java-version: 17
+          distribution:  microsoft
+          run: 
+           mvn --batch-mode --update snapshots verify
+           mkdir staging && cp target/*.jar staging
+       - name: Upload a Build Artifact
+         uses: actions/upload-artifact@v7.0.2
+         with:
+          name: Drop
+          path: staging
+          
+         
+     
+    
